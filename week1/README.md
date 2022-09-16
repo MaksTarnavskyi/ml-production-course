@@ -4,9 +4,16 @@ To build image:
 ```
     docker build -t maksymtarnavskyi/simple-app .
 ```
+
 To pull image:
 ```
-    docker pull maksymtarnavskyi/simple-app
+    docker pull maksymtarnavskyi/simple-app:week1-simple-app
+```
+
+To build and push - run bash script:
+```
+    chmod +x task-1.sh
+    ./task-1.sh
 ```
 
 To run application:
