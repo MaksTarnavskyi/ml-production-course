@@ -2,6 +2,9 @@
 
 name: CI
 
+env:
+  IMAGE_ML_WEB: simple-app
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -51,6 +54,6 @@ jobs:
           file: week1/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simple-app:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/simple-app:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/simple-app:buildcache,mode=max
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:buildcache,mode=max
