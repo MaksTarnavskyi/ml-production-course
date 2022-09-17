@@ -9,7 +9,9 @@ on:
     branches: 
       - 'main'
     tags:
-      - '*'
+      - 'week*'
+    paths:
+      - ./week1/
   pull_request:
     branches: 
       - 'main'
