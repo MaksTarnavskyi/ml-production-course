@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY flask-app .
 
 # install dependencies
-RUN pip install --no-cache-dir -r requirements.txt --user
+RUN pip install -r requirements.txt --user
 
 # tell the port number the container should expose
 EXPOSE 5000
