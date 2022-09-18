@@ -6,13 +6,13 @@ USER appuser
 WORKDIR /usr/src/app
 
 # copy requirements
-COPY flask-app/requirements.txt requirements.txt
+COPY week1/flask-app/requirements.txt requirements.txt
 
 # install dependencies
-RUN pip install -r requirements.txt --user
+RUN week1/pip install -r requirements.txt --user
 
 # copy all other files to the container
-COPY flask-app .
+COPY week1/flask-app .
 
 # tell the port number the container should expose
 EXPOSE 5000
