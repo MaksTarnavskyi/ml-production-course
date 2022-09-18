@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 COPY week1/flask-app/requirements.txt requirements.txt
 
 # install dependencies
-RUN week1/pip install -r requirements.txt --user
+RUN pip install -r requirements.txt --user
 
 # copy all other files to the container
 COPY week1/flask-app .
