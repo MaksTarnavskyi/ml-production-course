@@ -1,4 +1,8 @@
 .DS_Store
+venv-data-formats
+data
+outputs
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
