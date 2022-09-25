@@ -3,6 +3,13 @@
 ### Envierement setup
 
 ```
-    python -m venv venv
-    source venv/bin/activate
+    python -m venv venv-data-formats
+    source venv-data-formats/bin/activate
 ```
+### Results
+
+![plot](./output/plots/chart-save-measurement.png)
+
+![plot](./output/plots/chart-load-measurement.png)
+
+![plot](./output/plots/chart-file-size.png)
