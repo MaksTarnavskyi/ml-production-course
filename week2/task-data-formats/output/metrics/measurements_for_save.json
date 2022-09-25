@@ -1,0 +1,1 @@
+[{"file_format":"excel","execution_time_sec":16.361},{"file_format":"xml","execution_time_sec":2.923},{"file_format":"csv","execution_time_sec":0.157},{"file_format":"json","execution_time_sec":0.099},{"file_format":"parquet","execution_time_sec":0.077},{"file_format":"feather","execution_time_sec":0.049},{"file_format":"pickle","execution_time_sec":0.035}]
