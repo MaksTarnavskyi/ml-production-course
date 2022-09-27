@@ -69,8 +69,17 @@ jobs:
     - name: Start minikube
       uses: medyagh/setup-minikube@master
 
-    - name: Try the cluster !
+    - name: Get pods
       run: kubectl get pods -A
+
+    - name: Get pods
+      run: |
+        kubectl create -f week1/k8s-resources/deployment-flask-app.yaml
+        kubectl create -f week1/k8s-resources/service-flask-app.yaml
+        kubectl wait --for=condition=complete --timeout=300s job/job-app-ml
+        kubectl get pods -A
+
+
     
     # - name: Deploy job to minikube
     #   run: |
