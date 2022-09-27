@@ -72,11 +72,11 @@ jobs:
     - name: Get pods
       run: kubectl get pods -A
 
-    - name: Get pods
+    - name: Deploy application
       run: |
         kubectl create -f week1/k8s-resources/deployment-flask-app.yaml
         kubectl create -f week1/k8s-resources/service-flask-app.yaml
-        kubectl wait --for=condition=complete --timeout=300s job/job-app-ml
+        kubectl wait --for=condition=complete --timeout=300s job/deployment-flask
         kubectl get pods -A
 
 
