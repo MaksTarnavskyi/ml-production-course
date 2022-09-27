@@ -6,6 +6,10 @@
     python -m venv venv-data-formats
     source venv-data-formats/bin/activate
 ```
+from root directory build docker
+```
+docker build -t maksymtarnavskyi/task-data-formats week2/task-data-formtats
+```
 ### Results
 
 ![plot](./output/plots/chart-save-measurement.png)
