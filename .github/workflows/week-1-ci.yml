@@ -25,7 +25,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-and-push-flask-app:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -57,3 +57,27 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:buildcache,mode=max
+
+
+  k8s_local_test_with_minikube:
+
+    runs-on: ubuntu-latest
+    name: build example and deploy to minikube
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+
+    - name: Try the cluster !
+      run: kubectl get pods -A
+    
+    # - name: Deploy job to minikube
+    #   run: |
+    #     kubectl create -f week-1/k8s-resources/job-app-ml.yaml 
+    #     kubectl wait --for=condition=complete --timeout=300s job/job-app-ml
+    #     kubectl get pod
+    # - name: Deploy app to minikube
+    #   run: |
+    #     # kubectl create -f week-1/k8s-resources/deployment-app-web.yaml
+    #     kubectl get pod 
