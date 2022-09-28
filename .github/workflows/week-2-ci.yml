@@ -32,6 +32,9 @@ jobs:
 
     - name: Get pods
       run: kubectl get pods -A
+
+    - name: Install requirements.txt
+      run: pip install -r week2/minio/requirements.txt
     
     - name: Deploy minio to minikube
       run: |
@@ -43,4 +46,3 @@ jobs:
 
         kubectl port-forward svc/minio-api 9000:9000 &
         kubectl get pods -A
-    
