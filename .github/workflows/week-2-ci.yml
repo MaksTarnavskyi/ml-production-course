@@ -1,0 +1,34 @@
+name: week-2-ci
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'week-2'      
+env:
+
+
+jobs:
+
+  minio-deploy:
+
+    runs-on: ubuntu-latest
+    name: build example and deploy to minikube
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+
+    - name: Get pods
+      run: kubectl get pods -A
+    
+    - name: Deploy minio to minikube
+      run: |
+        kubectl create -f week2/minio/k8s/minio-pvc.yaml
+        kubectl create -f week2/minio/k8s/minio-deployment.yaml
+        kubectl create -f week2/minio/k8s/minio-service.yaml
+
+        kubectl port-forward svc/minio-api 9000:9000
+        kubectl get pods -A
+    
