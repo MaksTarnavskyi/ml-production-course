@@ -38,9 +38,9 @@ jobs:
         kubectl create -f week2/minio/k8s/minio-pvc.yaml
         kubectl create -f week2/minio/k8s/minio-deployment.yaml
         kubectl create -f week2/minio/k8s/minio-service.yaml
-        
+
         kubectl wait deployment -n default minio-deployment --for condition=Available=True --timeout=90s
 
-        kubectl port-forward svc/minio-api 9000:9000
+        kubectl port-forward svc/minio-api 9000:9000 &
         kubectl get pods -A
     
