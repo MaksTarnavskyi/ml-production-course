@@ -29,3 +29,8 @@ Local testing
     python -m pytest tests/ 
 ```
 
+Docker
+```
+    docker build -t maksymtarnavskyi/minio-app:latest .
+```
+
