@@ -11,8 +11,6 @@ on:
   push:
     branches: 
       - 'main'
-    tags:
-      - 'week*'
     paths:
       - ./week1/
   pull_request:
