@@ -23,7 +23,7 @@ jobs:
   minio-deploy:
 
     runs-on: ubuntu-latest
-    name: build example and deploy to minikube
+    name: deploy minio to minikube
 
     steps:
     - uses: actions/checkout@v2
@@ -38,6 +38,7 @@ jobs:
         kubectl create -f week2/minio/k8s/minio-pvc.yaml
         kubectl create -f week2/minio/k8s/minio-deployment.yaml
         kubectl create -f week2/minio/k8s/minio-service.yaml
+        kubectl wait --for=condition=complete --timeout=300s service/minio-api
 
         kubectl port-forward svc/minio-api 9000:9000
         kubectl get pods -A
