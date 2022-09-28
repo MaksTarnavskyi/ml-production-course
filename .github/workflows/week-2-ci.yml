@@ -53,12 +53,9 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_MAIN_NAME }}:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_MAIN_NAME }}:buildcache,mode=max
 
-      - name: Build new
-        run: |
-          docker build -t maksymtarnavskyi/task-data-formats week2/task-data-formats
       - name: Run task compare data formats
         run: |
-          docker run -it maksymtarnavskyi/task-data-formats:latest
+          docker run -i maksymtarnavskyi/task-data-formats:latest
       - name: Push
         uses: docker/build-push-action@v2
         with:
