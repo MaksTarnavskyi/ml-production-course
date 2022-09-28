@@ -1,14 +1,11 @@
 ## Week-2 Data formats task
 
-### Envierement setup
+### Local setup
 
-```
-    python -m venv venv-data-formats
-    source venv-data-formats/bin/activate
-```
 from root directory build docker
 ```
-docker build -t maksymtarnavskyi/task-data-formats week2/task-data-formtats
+docker build -t maksymtarnavskyi/task-data-formats week2/task-data-formats
+docker run -it maksymtarnavskyi/task-data-formats:latest
 ```
 ### Results
 
