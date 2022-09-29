@@ -6,7 +6,9 @@ import time
 from tqdm import tqdm
 from concurrent.futures import wait
 import time
+from multiprocessing import Pool, cpu_count
 
+CPU_COUNT = max(cpu_count() - 1, 1)
 
 def train_model(x_train: np.ndarray, y_train: np.ndarray) -> PassiveAggressiveClassifier:
     clf = PassiveAggressiveClassifier()
@@ -18,7 +20,7 @@ def get_data() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     x_train = np.random.rand(100, 10)
     y_train = np.random.randint(2, size=100)
 
-    x_test = np.random.rand(100_000_000, 10)
+    x_test = np.random.rand(50_000_000, 10)
     return x_train, y_train, x_test
 
 
@@ -59,6 +61,23 @@ def run_inference_process_pool(model: PassiveAggressiveClassifier, x_test: np.nd
             y_pred.append(y_batch)
     return np.concatenate(y_pred)
 
+def run_inference_multiprocess_pool(model: PassiveAggressiveClassifier, x_test: np.ndarray, n_jobs: int = CPU_COUNT) -> np.ndarray:
+    
+    chunk_size = len(x_test) // n_jobs
+
+    chunks = []
+    # split in to chunks
+    for i in range(0, len(x_test), chunk_size):
+        chunks.append(x_test[i : i + chunk_size])
+
+    y_pred = []
+    pool = Pool(n_jobs)
+    result_map = pool.map(self._preprocess_chunk_for_train, chunk_split)
+    pool.close()
+    pool.join()
+
+    return np.concatenate(y_pred)
+
 
 def main():
     x_train, y_train, x_test = get_data()
@@ -74,6 +93,10 @@ def main():
     max_workers = 16
     _ = run_inference_process_pool(model=model, x_test=x_test)
     print(f"Inference {max_workers} workers {time.monotonic() - s}")
+
+    s = time.monotonic()
+    _ = run_inference_multiprocess_pool(model=model, x_test=x_test)
+    print(f"Inference {CPU_COUNT} jobs {time.monotonic() - s}")
 
 
 if __name__ == "__main__":
