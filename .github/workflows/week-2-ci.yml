@@ -56,7 +56,7 @@ jobs:
       - name: Build new
         run: |
           docker build -t maksymtarnavskyi/task-inference week2/inference
-      - name: Run task compare data formats
+      - name: Run compare inference time
         run: |
           docker run -i maksymtarnavskyi/task-inference:latest
       - name: Push
