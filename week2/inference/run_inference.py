@@ -18,7 +18,7 @@ def get_data() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     x_train = np.random.rand(100, 10)
     y_train = np.random.randint(2, size=100)
 
-    x_test = np.random.rand(10_000_000, 10)
+    x_test = np.random.rand(100_000_000, 10)
     return x_train, y_train, x_test
 
 
