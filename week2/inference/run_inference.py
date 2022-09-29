@@ -7,6 +7,7 @@ from tqdm import tqdm
 from concurrent.futures import wait
 import time
 from multiprocessing import Pool, cpu_count
+from functools import partial
 
 CPU_COUNT = max(cpu_count() - 1, 1)
 
@@ -20,7 +21,7 @@ def get_data() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     x_train = np.random.rand(100, 10)
     y_train = np.random.randint(2, size=100)
 
-    x_test = np.random.rand(1_000_000, 10)
+    x_test = np.random.rand(10_000_000, 10)
     return x_train, y_train, x_test
 
 
@@ -28,7 +29,7 @@ def predict(model: PassiveAggressiveClassifier, x: np.ndarray) -> np.ndarray:
     return model.predict(x)
 
 
-def run_inference(model: PassiveAggressiveClassifier, x_test: np.ndarray, batch_size: int = 2048) -> np.ndarray:
+def run_inference(x_test: np.ndarray, model: PassiveAggressiveClassifier, batch_size: int = 2048) -> np.ndarray:
     y_pred = []
     for i in tqdm(range(0, x_test.shape[0], batch_size)):
         x_batch = x_test[i : i + batch_size]
@@ -61,6 +62,7 @@ def run_inference_process_pool(model: PassiveAggressiveClassifier, x_test: np.nd
             y_pred.append(y_batch)
     return np.concatenate(y_pred)
 
+
 def run_inference_multiprocess_pool(model: PassiveAggressiveClassifier, x_test: np.ndarray, n_jobs: int = CPU_COUNT) -> np.ndarray:
     
     chunk_size = len(x_test) // n_jobs
@@ -70,13 +72,12 @@ def run_inference_multiprocess_pool(model: PassiveAggressiveClassifier, x_test: 
     for i in range(0, len(x_test), chunk_size):
         chunks.append(x_test[i : i + chunk_size])
 
-    y_pred = []
     pool = Pool(n_jobs)
-    result_map = pool.map(self._preprocess_chunk_for_train, chunk_split)
+    result_map = pool.map(partial(run_inference, model=model), chunks)
     pool.close()
     pool.join()
 
-    return np.concatenate(y_pred)
+    return 
 
 
 def main():
