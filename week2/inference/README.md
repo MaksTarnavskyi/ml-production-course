@@ -2,6 +2,6 @@
 
 ### Docker setup
 ```
-    docker build -t maksymtarnavskyi/inference-app:latest .
-    docker run -i maksymtarnavskyi/inference-app:latest
+    docker build -t maksymtarnavskyi/task-inference:latest .
+    docker run -i maksymtarnavskyi/task-inference:latest
 ```
