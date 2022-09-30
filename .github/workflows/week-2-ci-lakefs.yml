@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-WEEK-2
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: 
+      - 'main'
+      - 'week2-lakefs'
+    paths:
+      - ./week2/
+  pull_request:
+    branches: 
+      - 'main'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  minio-deploy:
+
+    runs-on: ubuntu-latest
+    name: deploy minio to minikube
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+
+    - name: Get pods
+      run: kubectl get pods -A
+
+    - name: Deploy minio to minikube
+      run: |
+        kubectl create -f week2/try-lakefs/k8s/lakefs-deploy.yaml
+        kubectl wait deployment -n default my-lakefs --for condition=Available=True --timeout=90s
+        kubectl port-forward svc/my-lakefs 5000:80 &
+        kubectl get pods -A
+    - name: Install Python dependencies
+      uses: py-actions/py-dependency-install@v2
+      with:
+        path: "week2/try-lakefs/requirements.txt"
