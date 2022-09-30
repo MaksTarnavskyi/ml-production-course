@@ -48,3 +48,17 @@ Delete file
 
 ## Python client for LakeFS - [Work in progress]
 
+
+## Install - Kubernetes
+
+Generate template
+```
+    helm repo add lakefs https://charts.lakefs.io
+    helm template my-lakefs lakefs/lakefs > lakefs-deploy.yaml
+```
+
+Deploy lakefs on k8s
+```
+    kubectl create -f lakefs-deploy.yaml
+    kubectl port-forward svc/my-lakefs 5000:80
+```
