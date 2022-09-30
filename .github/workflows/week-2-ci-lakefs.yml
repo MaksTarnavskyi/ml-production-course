@@ -33,7 +33,7 @@ jobs:
     - name: Get pods
       run: kubectl get pods -A
 
-    - name: Deploy minio to minikube
+    - name: Deploy lakefs to minikube
       run: |
         kubectl create -f week2/try-lakefs/k8s/lakefs-deploy.yaml
         kubectl wait deployment -n default my-lakefs --for condition=Available=True --timeout=90s
