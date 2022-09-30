@@ -20,10 +20,10 @@ on:
 
 jobs:
 
-  minio-deploy:
+  lakefs-deploy:
 
     runs-on: ubuntu-latest
-    name: deploy minio to minikube
+    name: deploy lakefs to minikube
 
     steps:
     - uses: actions/checkout@v2
