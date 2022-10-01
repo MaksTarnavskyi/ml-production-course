@@ -16,9 +16,8 @@ on:
       - 'week2-compare-data-formats'
     paths:
       - ./week2/
+  
   pull_request:
-    paths:
-      - ./week2/
     branches: 
       - 'main'
 
