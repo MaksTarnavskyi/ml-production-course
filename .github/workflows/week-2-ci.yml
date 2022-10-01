@@ -14,6 +14,7 @@ on:
       - 'main'
       - 'week2-minio'
       - 'week2-compare-data-formats'
+      - 'week2-lakefs'
     paths:
       - ./week2/
   
@@ -105,5 +106,29 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_MAIN_NAME }}:${{ env.IMAGE_MAIN_TAG }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_MAIN_NAME }}:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_MAIN_NAME }}:buildcache,mode=max
+
+  lakefs-deploy:
+
+    runs-on: ubuntu-latest
+    name: deploy lakefs to minikube
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+
+    - name: Get pods
+      run: kubectl get pods -A
+
+    - name: Deploy lakefs to minikube
+      run: |
+        kubectl create -f week2/try-lakefs/k8s/lakefs-deploy.yaml
+        kubectl wait deployment -n default my-lakefs --for condition=Available=True --timeout=90s
+        kubectl port-forward svc/my-lakefs 5000:80 &
+        kubectl get pods -A
+    - name: Install Python dependencies
+      uses: py-actions/py-dependency-install@v2
+      with:
+        path: "week2/try-lakefs/requirements.txt"
 
   

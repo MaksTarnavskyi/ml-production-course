@@ -1,4 +1,7 @@
 .DS_Store
+data
+venv-lakefs
+
 
 ua-gec
 mydata

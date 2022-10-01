@@ -1,0 +1,1 @@
+lakefs_client==0.82.0
