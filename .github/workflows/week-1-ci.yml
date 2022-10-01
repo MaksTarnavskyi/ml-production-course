@@ -11,9 +11,12 @@ on:
   push:
     branches: 
       - 'main'
+      - 'week1-k8s'
     paths:
       - ./week1/
-
+  pull_request:
+    branches: 
+      - 'main'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -21,7 +24,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-and-push-flask-app:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -53,3 +56,23 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_ML_WEB }}:buildcache,mode=max
+
+
+  k8s_local_test_with_minikube:
+
+    runs-on: ubuntu-latest
+    name: Deploy deployment to minikube
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+
+    - name: Get pods
+      run: kubectl get pods -A
+
+    - name: Deploy application
+      run: |
+        kubectl create -f week1/k8s-resources/deployment-flask-app.yaml
+        kubectl create -f week1/k8s-resources/service-flask-app.yaml
+        kubectl get pods -A

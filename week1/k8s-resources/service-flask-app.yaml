@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment-flask-app
+  labels:
+    app: deployment-flask-app
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    name: flask-app
+  selector:
+    app: deployment-flask-app
