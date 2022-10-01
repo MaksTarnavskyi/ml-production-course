@@ -59,7 +59,7 @@ Run port forwarding
     kubectl port-forward svc/deployment-flask-app 5000:5000
 ```
 
-And then one more time paste in browser: http://0.0.0.0:8888/ and enjoy :)
+And then one more time paste in browser: http://0.0.0.0:5000/ and enjoy :)
 
 Try autoscaling
 ```
@@ -87,5 +87,5 @@ Delete everything
 
 Delete cluster
 ```
-    kind delete cluster
+    kind delete cluster --name week-1
 ```
