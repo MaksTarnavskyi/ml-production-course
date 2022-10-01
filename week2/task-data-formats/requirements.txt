@@ -1,0 +1,8 @@
+numpy==1.23.3
+pandas==1.5.0
+omegaconf==2.2.3
+pyarrow==9.0.0
+lxml==4.9.1
+openpyxl==3.0.10
+seaborn==0.12.0
+hydra-core==1.2.0

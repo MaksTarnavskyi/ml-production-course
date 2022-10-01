@@ -1,0 +1,20 @@
+n_rows: 10_000
+n_columns: 100
+fill_value: '*'
+
+n_iterations: 3
+
+data_folder: output/data
+metric_folder: output/metrics
+plot_folder: output/plots
+
+file_name: data
+
+file_formats:
+  - csv
+  - json
+  - xml
+  - excel
+  - feather
+  - parquet
+  - pickle
