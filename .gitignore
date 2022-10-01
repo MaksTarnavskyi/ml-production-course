@@ -3,6 +3,13 @@ data
 venv-lakefs
 
 
+ua-gec
+mydata
+data
+outputs
+notebooks
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
