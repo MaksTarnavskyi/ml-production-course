@@ -46,9 +46,6 @@ Delete file
     awslfs s3 rm s3://data-bucket/main/sample_file.txt
 ```
 
-## Python client for LakeFS - [Work in progress]
-
-
 ## Install - Kubernetes
 
 Generate template
