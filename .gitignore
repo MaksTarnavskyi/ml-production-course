@@ -1,7 +1,11 @@
 .DS_Store
+
+ua-gec
+mydata
 data
 outputs
 notebooks
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
