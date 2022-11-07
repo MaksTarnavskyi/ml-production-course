@@ -1,14 +1,13 @@
 .DS_Store
 data
 venv-lakefs
-
-
+envs
 ua-gec
 mydata
 data
 outputs
 notebooks
-
+hugingface_example
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
