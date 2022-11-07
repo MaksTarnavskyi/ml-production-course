@@ -46,7 +46,7 @@ jobs:
           docker pull kyrylprojector/nlp-sample:latest
       - name: Build new
         run: |
-          docker build -f week-3/nlp-sample/Dockerfile -t nlp-sample:latest week-3/nlp-sample
+          docker build -f week3/nlp-sample/Dockerfile -t nlp-sample:latest week3/nlp-sample
       - name: Test style
         run: |
           docker run nlp-sample:latest make lint
