@@ -8,7 +8,8 @@ on:
       - 'week3-wanb-logging'
 
     pull_request:
-      branches: [main]
+      branches: 
+       - main
   
   
   # Allows you to run this workflow manually from the Actions tab
