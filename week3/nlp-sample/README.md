@@ -24,6 +24,11 @@ And then for training
     make train_fast
 ```
 
+Look report
+```
+    open https://wandb.ai/maksym-tarnavskyi/nlp-sample
+```
+
 ### Data
 (CoLA)[https://nyu-mll.github.io/CoLA/] (Corpus of Linguistic Acceptability) is a dataset containing sentences labeled grammatically correct or not.
 
