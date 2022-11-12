@@ -188,6 +188,7 @@ def train(config_path: Path):
         "tasks": "text-classification",
         "language": "en",
         "dataset_tags": "cola",
+        "model_description": "Model check if the input sentence is grammaticaly correct or not "
     }
 
     trainer.create_model_card(**kwargs)
