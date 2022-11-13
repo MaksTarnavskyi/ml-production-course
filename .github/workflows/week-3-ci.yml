@@ -52,6 +52,7 @@ jobs:
       - name: Test style
         run: |
           docker run nlp-sample:latest make lint
+          docker run nlp-sample:latest make format
 
       - name: Test code
         run: |
