@@ -8,6 +8,8 @@ data
 outputs
 notebooks
 hugingface_example
+wandb
+results
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
