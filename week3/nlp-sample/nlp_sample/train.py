@@ -187,8 +187,8 @@ def train(config_path: Path):
         "finetuned_from": model_args.model_name_or_path,
         "tasks": "text-classification",
         "language": "en",
-        "dataset_tags": "cola",
-        "model_description": "Model check if the input sentence is grammaticaly correct or not "
+        "tags": "grammar error check",
+        "dataset_tags": "cola"
     }
 
     trainer.create_model_card(**kwargs)
