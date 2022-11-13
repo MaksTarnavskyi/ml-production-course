@@ -1,6 +1,7 @@
 from typer.testing import CliRunner
 from pathlib import Path
 from nlp_sample.cli import app
+import os
 
 runner = CliRunner()
 
@@ -15,6 +16,7 @@ def test_app():
     result = runner.invoke(app, ["train", "tests/data/test_config.json"])
     assert result.exit_code == 0
     assert Path("/tmp/results").exists()
-
-    result = runner.invoke(app, ["upload-to-registry", "cli-test", "/tmp/results"])
-    assert result.exit_code == 0
+    
+    if os.environ.get('WANDB_API_KEY'):
+        result = runner.invoke(app, ["upload-to-registry", "cli-test", "/tmp/results"])
+        assert result.exit_code == 0
