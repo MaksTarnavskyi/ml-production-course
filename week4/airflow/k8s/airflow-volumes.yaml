@@ -19,7 +19,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - week-4-kfp-control-plane
+          - ml-cluster-control-plane
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -53,7 +53,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - week-4-kfp-control-plane
+          - ml-cluster-control-plane
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
