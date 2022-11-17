@@ -66,5 +66,4 @@ with DAG(start_date=datetime(2021, 1, 1), catchup=False, schedule_interval=None,
         trigger_rule="all_done",
     )
 
-    #clean_storage_before_start >> load_data >> train_model >> upload_model >> clean_up
-    load_data >> train_model >> upload_model >> clean_up
+    clean_storage_before_start >> load_data >> train_model >> upload_model >> clean_up
