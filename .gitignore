@@ -8,6 +8,11 @@ mydata
 data
 outputs
 notebooks
+envs
+hugingface_example
+nlp_sample
+results
+wandb
 
 
 # Byte-compiled / optimized / DLL files
