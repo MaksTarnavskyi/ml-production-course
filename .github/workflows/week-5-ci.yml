@@ -3,7 +3,7 @@ name: week-5-ci
 on:
   push:
     branches:
-      - 'week-5'
+      - 'week-5-serving'
 
 jobs:
   build:
