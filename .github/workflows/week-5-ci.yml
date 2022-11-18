@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'week-5-serving'
+      - 'week-5-**'
 
 jobs:
   build:
