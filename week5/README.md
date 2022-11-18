@@ -19,3 +19,10 @@ Run localy
     make run_app_streamlit
 ```
 
+Deploy k8s: 
+
+```
+kubectl create -f k8s/app-streamlit.yaml
+kubectl port-forward --address 0.0.0.0 svc/app-streamlit 8080:8080
+```
+
