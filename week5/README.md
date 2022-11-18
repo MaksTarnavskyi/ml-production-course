@@ -46,3 +46,39 @@ Run tests
 ```
     python -m pytest tests/
 ```
+# Seldon 
+
+## Install with helm
+
+```
+    kubectl apply -f https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-crds.yaml
+    kubectl apply -n ambassador -f https://github.com/datawire/ambassador-operator/releases/latest/download/ambassador-operator-kind.yaml
+    kubectl wait --timeout=180s -n ambassador --for=condition=deployed ambassadorinstallations/ambassador
+
+    kubectl create namespace seldon-system
+
+    helm install seldon-core seldon-core-operator \
+        --repo https://storage.googleapis.com/seldon-charts \
+        --set usageMetrics.enabled=true \
+        --set ambassador.enabled=true \
+        --namespace seldon-system
+```
+
+## Port forward 
+
+```
+    kubectl port-forward  --address 0.0.0.0 -n ambassador svc/ambassador 7777:80
+```
+
+## Custom example
+```
+    kubectl create -f k8s/seldon-custom.yaml
+
+    open http://IP:7777/seldon/default/nlp-sample/api/v1.0/doc/#/
+    { "data": { "ndarray": ["this is an example"] } }
+
+
+    curl -X POST "http://IP:7777/seldon/default/nlp-sample/api/v1.0/predictions" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"data\":{\"ndarray\":[\"this is an example\"]}}"
+
+```
+
