@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'week-5-serving'
+      - 'week-5-**'
 
 jobs:
   build:
@@ -31,3 +32,14 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/app-streamlit:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/app-streamlit:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/app-streamlit:buildcache,mode=max
+
+      - name: Build app fastapi
+        uses: docker/build-push-action@v2
+        with:
+          context: week5/
+          file: week5/Dockerfile
+          push: true
+          target: app-fastapi
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/app-fastapi:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/app-fastapi:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/app-fastapi:buildcache,mode=max
