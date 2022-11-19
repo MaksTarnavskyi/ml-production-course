@@ -1,5 +1,5 @@
 # python3.7 should be sufficient to run Aim
-FROM python:3.8.3
+FROM python:3.7
 
 # install the `aim` package on the latest version
 RUN pip install --upgrade aim
