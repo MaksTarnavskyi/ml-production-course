@@ -16,7 +16,7 @@
 ## Run training 
 
 ```
-    python model/traininig.py --model-resutl-path result.pkl
+    python traininig.py --model-resutl-path result.pkl
 ```
 
 ## Run inference
@@ -27,7 +27,7 @@
 ```
 
 ```
-    uvicorn --host 0.0.0.0 --port 8080 --reload model/inference:app
+    uvicorn --host 0.0.0.0 --port 8080 --reload inference:app
 ```
 
 ## References
