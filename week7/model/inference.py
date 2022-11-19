@@ -9,7 +9,7 @@ from pydantic import BaseModel, BaseSettings
 
 class Settings(BaseSettings):
     model_path: str = "driver_model.bin"
-    fs_repo_path: str = "../features/"
+    fs_repo_path: str = "features/"
 
 
 class Payload(BaseModel):

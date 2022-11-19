@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression
 
 
 # Connect to your local feature store
-fs = feast.FeatureStore(repo_path="../features/")
+fs = feast.FeatureStore(repo_path="features/")
 
 
 def get_dataset() -> pd.DataFrame:
