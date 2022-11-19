@@ -1,7 +1,7 @@
 # Aim
 
 ```
-    make buil_aim
+    make build_aim
     make run_aim
 ```
 
