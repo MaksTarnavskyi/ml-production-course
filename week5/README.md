@@ -74,11 +74,11 @@ Run tests
 ```
     kubectl create -f k8s/seldon-custom.yaml
 
-    open http://IP:7777/seldon/default/nlp-sample/api/v1.0/doc/#/
+    open http://0.0.0.0:7777/seldon/default/nlp-sample/api/v1.0/doc/#/
     { "data": { "ndarray": ["this is an example"] } }
 
 
-    curl -X POST "http://IP:7777/seldon/default/nlp-sample/api/v1.0/predictions" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"data\":{\"ndarray\":[\"this is an example\"]}}"
+    curl -X POST "http://0.0.0.0:7777/seldon/default/nlp-sample/api/v1.0/predictions" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"data\":{\"ndarray\":[\"this is an example\"]}}"
 
 ```
 
