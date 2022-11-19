@@ -10,7 +10,7 @@ class SeldonAPI:
     def __init__(self):
         self.predictor = Predictor.default_from_model_registry()
 
-    def predict(self, text: List[str]):
+    def predict(self, text, features_names: List[str]):
         logger.info(text)
         results = self.predictor.predict(text)
         logger.info(results)
