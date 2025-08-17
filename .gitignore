@@ -12,14 +12,15 @@ hugingface_example
 nlp_sample
 results
 wandb
-logs
 
+logs
 
 data
 results
 wandb
 hugingface_example
 envs
+
 
 
 # Byte-compiled / optimized / DLL files
