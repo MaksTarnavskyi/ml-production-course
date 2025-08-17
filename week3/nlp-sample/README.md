@@ -37,6 +37,11 @@ Look report
     open https://wandb.ai/maksym-tarnavskyi/nlp-sample
 ```
 
+To generate template report for ModelCard
+```
+    python -c 'from nlp_sample.utils import *; generate_template_for_model_card()'
+```
+
 ### Data
 (CoLA)[https://nyu-mll.github.io/CoLA/] (Corpus of Linguistic Acceptability) is a dataset containing sentences labeled grammatically correct or not.
 

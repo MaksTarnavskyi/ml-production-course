@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 from pathlib import Path
 from typing import Dict
@@ -6,9 +7,11 @@ from typing import Dict
 import datasets
 import numpy as np
 import transformers
-import wandb
+from huggingface_hub import ModelCard, ModelCardData
 from sklearn.metrics import f1_score, fbeta_score
 from transformers import EvalPrediction
+
+import wandb
 
 
 def compute_metrics(p: EvalPrediction) -> Dict[str, float]:
@@ -63,3 +66,19 @@ def load_from_registry(model_name: str, model_path: Path):
         artifact = run.use_artifact(model_name, type="model")
         artifact_dir = artifact.download(root=model_path)
         print(f"{artifact_dir}")
+
+
+def generate_template_for_model_card(output_path: str = ".", card_name: str = "ModelCard.md"):
+    card_data = ModelCardData(language="en", license="mit")
+    card = ModelCard.from_template(
+        card_data,
+        model_id="my-cool-model",
+        model_description="this model does this and that",
+        developers="Nate Raw",
+        more_resources="https://github.com/huggingface/huggingface_hub",
+    )
+
+    os.makedirs(output_path, exist_ok=True)
+    model_card_path = Path(output_path) / card_name
+    with open(model_card_path, "w") as f:
+        f.write(card.content)
