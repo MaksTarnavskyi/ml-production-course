@@ -13,6 +13,7 @@ nlp_sample
 results
 wandb
 
+.lock-file
 logs
 
 data
@@ -20,6 +21,7 @@ results
 wandb
 hugingface_example
 envs
+
 
 
 
