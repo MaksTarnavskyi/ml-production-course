@@ -1,13 +1,13 @@
 .DS_Store
 data
 venv-lakefs
-
-
+envs
 ua-gec
 mydata
 data
 outputs
 notebooks
+
 data
 results
 wandb
