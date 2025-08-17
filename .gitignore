@@ -13,6 +13,7 @@ nlp_sample
 results
 wandb
 logs
+.lock-file
 
 
 data

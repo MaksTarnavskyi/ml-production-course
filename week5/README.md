@@ -22,7 +22,27 @@ Run localy
 Deploy k8s: 
 
 ```
-kubectl create -f k8s/app-streamlit.yaml
-kubectl port-forward --address 0.0.0.0 svc/app-streamlit 8080:8080
+    kubectl create -f k8s/app-streamlit.yaml
+    kubectl port-forward --address 0.0.0.0 svc/app-streamlit 8080:8080
 ```
 
+# Fast API
+
+Run locally: 
+
+```
+    make build_fast_api
+    make run_fast_api
+```
+
+Deploy k8s: 
+
+```
+    kubectl create -f k8s/app-fastapi.yaml
+    kubectl port-forward --address 0.0.0.0 svc/app-fastapi 8080:8080
+```
+
+Run tests
+```
+    python -m pytest tests/
+```

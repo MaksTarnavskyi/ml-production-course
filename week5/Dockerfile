@@ -18,3 +18,7 @@ CMD [ "bash" ]
 # Streamlit UI docker image
 FROM base AS app-streamlit
 CMD streamlit run --server.address 0.0.0.0 --server.port 8080 serving/streamlit_app.py
+
+# Fast API docker image
+FROM base AS app-fastapi
+CMD uvicorn --host 0.0.0.0 --port 8080 --workers 4 serving.fast_api:app
