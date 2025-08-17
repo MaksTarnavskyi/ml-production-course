@@ -17,10 +17,6 @@ on:
       - 'week2-lakefs'
     paths:
       - ./week2/
-  
-  pull_request:
-    branches: 
-      - 'main'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
