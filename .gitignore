@@ -1,8 +1,7 @@
 .DS_Store
 data
 venv-lakefs
-
-
+envs
 ua-gec
 mydata
 data
@@ -15,6 +14,12 @@ results
 wandb
 logs
 
+
+data
+results
+wandb
+hugingface_example
+envs
 
 
 # Byte-compiled / optimized / DLL files
