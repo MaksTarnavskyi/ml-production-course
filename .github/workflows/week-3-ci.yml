@@ -1,5 +1,6 @@
 name: week-3-ci
 
+
 on:
   push:
     branches:
@@ -35,4 +36,28 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_AIM_NAME }}:${{ env.IMAGE_AIM_TAG }}
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_AIM_NAME }}:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_AIM_NAME }}:buildcache,mode=max
+          
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  cml-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: iterative/setup-cml@v1
+
+      - name: Train model
+        run: |
+          docker build -f week3/nlp-sample/Dockerfile -t nlp-sample:latest week3/nlp-sample
+          docker run -v $PWD:/tmp/results -e WANDB_API_KEY=${{ secrets.WANDB_API_KEY }} nlp-sample:latest make train_fast_ci
+      - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Post reports as comments in GitHub PRs
+          # cat results.txt >> report.md
+          cml send-comment README.md
+
 

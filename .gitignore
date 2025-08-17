@@ -1,8 +1,7 @@
 .DS_Store
 data
 venv-lakefs
-
-
+envs
 ua-gec
 mydata
 data
@@ -13,8 +12,16 @@ hugingface_example
 nlp_sample
 results
 wandb
-logs
+
 .lock-file
+logs
+
+data
+results
+wandb
+hugingface_example
+envs
+
 
 
 
