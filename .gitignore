@@ -1,8 +1,7 @@
 .DS_Store
 data
 venv-lakefs
-
-
+envs
 ua-gec
 mydata
 data
@@ -13,6 +12,15 @@ hugingface_example
 nlp_sample
 results
 wandb
+
+logs
+
+data
+results
+wandb
+hugingface_example
+envs
+
 
 
 # Byte-compiled / optimized / DLL files
