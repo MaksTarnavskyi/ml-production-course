@@ -1,4 +1,4 @@
-FROM huggingface/transformers-pytorch-cpu:4.18.0
+FROM python:3.8.3
 
 WORKDIR /app
 
@@ -8,7 +8,6 @@ ENV LANG=C.UTF-8
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV PYTHONPATH /app
 COPY . . 

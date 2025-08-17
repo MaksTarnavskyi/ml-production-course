@@ -6,19 +6,13 @@ from functools import partial
 from pathlib import Path
 
 from datasets import load_dataset
-from transformers import (
-    AutoConfig,
-    AutoModelForSequenceClassification,
-    AutoTokenizer,
-    HfArgumentParser,
-    Trainer,
-    TrainingArguments,
-    default_data_collator,
-    set_seed,
-)
+from transformers import (AutoConfig, AutoModelForSequenceClassification,
+                          AutoTokenizer, HfArgumentParser, Trainer,
+                          TrainingArguments, default_data_collator, set_seed)
 
 from nlp_sample.config import DataTrainingArguments, ModelArguments
-from nlp_sample.utils import compute_metrics, preprocess_function_examples, setup_logger
+from nlp_sample.utils import (compute_metrics, preprocess_function_examples,
+                              setup_logger)
 
 logger = logging.getLogger(__name__)
 
@@ -188,7 +182,7 @@ def train(config_path: Path):
         "tasks": "text-classification",
         "language": "en",
         "tags": "grammar error check",
-        "dataset_tags": "cola"
+        "dataset_tags": "cola",
     }
 
     trainer.create_model_card(**kwargs)

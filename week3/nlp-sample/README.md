@@ -12,6 +12,14 @@ Then open docker in dev mode and there run training
     make run_dev
 ```
 
+First, lest's run tests
+```
+    make format
+    make lint
+    make test_all
+```
+
+
 Inside docker dev mode
 ```
     export PYTHONPATH=.
